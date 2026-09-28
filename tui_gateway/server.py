@@ -2008,12 +2008,9 @@ def _session_show_reasoning(sid: str) -> bool:
     return _load_show_reasoning()
 
 
-def _process_tool_chrome_enabled(sid: str) -> bool:
-    """Non-essential tool rows follow display.show_reasoning, not reasoning_effort."""
-    return _session_show_reasoning(sid) and _tool_progress_enabled(sid)
-
-
 def _tool_progress_enabled(sid: str) -> bool:
+    """Tool rows follow tool_progress. display.show_reasoning gates reasoning text only: Desktop's
+    answer-only mode hides tool chrome client-side, and the TUI keeps its own /details controls."""
     return _session_tool_progress_mode(sid) != "off"
 
 
